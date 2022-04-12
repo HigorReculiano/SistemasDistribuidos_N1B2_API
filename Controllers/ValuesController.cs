@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace N1B2_API.Controllers
 {
+    [Route("api/arte")]
     public class ValuesController : ApiController
     {
         // GET api/values

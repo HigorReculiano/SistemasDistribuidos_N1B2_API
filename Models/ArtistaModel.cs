@@ -9,18 +9,18 @@ namespace N1B2_API.Models
     {
         private int codigo;
         private string nomeArtista;
-        private int idade;
+        private string email;
 
         public ArtistaModel()
         {
 
         }
 
-        public ArtistaModel(int codigo, string nomeArtista, int idade)
+        public ArtistaModel(int codigo, string nomeArtista, string email)
         {
             this.Codigo = codigo;
             this.NomeArtista = nomeArtista;
-            this.Idade = idade;
+            this.Email = email;
         }
         public int Codigo
         {
@@ -32,10 +32,10 @@ namespace N1B2_API.Models
             get { return nomeArtista; }
             set { nomeArtista = value; }
         }
-        public int Idade
+        public string Email
         {
-            get { return idade; }
-            set { idade = value; }
+            get { return email; }
+            set { email = value; }
         }
     }
 }

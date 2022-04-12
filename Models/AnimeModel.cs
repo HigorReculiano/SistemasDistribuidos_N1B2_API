@@ -9,18 +9,16 @@ namespace N1B2_API.Models
     {
         private int codigo;
         private string nomeAnime;
-        private string genero;
 
         public AnimeModel()
         {
 
         }
 
-        public AnimeModel(int codigo, string nomeAnime, string genero)
+        public AnimeModel(int codigo, string nomeAnime)
         {
             this.Codigo = codigo;
             this.NomeAnime = nomeAnime;
-            this.Genero = genero;
         }
         public int Codigo
         {
@@ -31,11 +29,6 @@ namespace N1B2_API.Models
         {
             get { return nomeAnime; }
             set { nomeAnime = value; }
-        }
-        public string Genero
-        {
-            get { return genero; }
-            set { genero = value; }
         }
     }
 }
