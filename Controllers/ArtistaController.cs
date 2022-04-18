@@ -12,7 +12,7 @@ namespace N1B2_API.Controllers
     public class ArtistaController : ApiController
     {
         private static List<ArtistaModel> listaArtistas = new List<ArtistaModel>();
-
+        
         [AcceptVerbs("POST")]
         [Route("CadastrarArtista")]
         public string CadastrarUsuario(ArtistaModel artista)
@@ -20,7 +20,7 @@ namespace N1B2_API.Controllers
             string erro = ValidaDado(artista);
             if (!string.IsNullOrEmpty(erro))
                 return erro;
-
+            artista.Codigo = listaArtistas.Count + 1;
             listaArtistas.Add(artista);
             return "Usuário cadastrado com sucesso!";
         }
@@ -96,8 +96,8 @@ namespace N1B2_API.Controllers
 
         private bool EmailExiste(string email)
         {
-            var emailExistente = listaArtistas.Where(a => a.Email.ToUpper() == email.ToUpper()).Select(n => n.Email).FirstOrDefault();
-            if (string.IsNullOrEmpty(emailExistente))
+            var emailExistente = listaArtistas.Where(a => a.Email.ToUpper() == email.ToUpper()).Select(n => n.Email).Count();
+            if (emailExistente == 0)
                 return false;
             return true;
         }

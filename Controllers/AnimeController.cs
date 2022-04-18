@@ -10,7 +10,7 @@ namespace N1B2_API.Controllers
     [RoutePrefix("")]
     public class AnimeController : Controller
     {
-        private List<AnimeModel> listaAnimes = new List<AnimeModel>();
+        private static List<AnimeModel> listaAnimes = new List<AnimeModel>();
         [AcceptVerbs("POST")]
         [Route("CadastrarAnime")]
         public string CadastrarAnime(AnimeModel anime)
@@ -19,6 +19,7 @@ namespace N1B2_API.Controllers
                 return "Erro no cadastro, não permitido nome vazio!";
             if (VerificaAnimeExiste(anime.NomeAnime))
                 return "Anime já existente!";
+            anime.Codigo = listaAnimes.Count + 1;
             listaAnimes.Add(anime);
             return "Anime cadastrado com sucesso!";
         }
