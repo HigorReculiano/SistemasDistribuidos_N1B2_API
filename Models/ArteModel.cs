@@ -7,10 +7,10 @@ namespace N1B2_API.Models
 {
     public class ArteModel
     {
-        private int codigo;
-        private string imagemBase64;
-        private int codigoArtista;
-        private int codigoAnime;
+        private int _codigo;
+        private string _imagemBase64;
+        private int _codigoArtista;
+        private int _codigoAnime;
 
         public ArteModel()
         {
@@ -19,30 +19,30 @@ namespace N1B2_API.Models
 
         public ArteModel(int codigo, string imagemBase64, int codigoArtista, int codigoAnime)
         {
-            this.Codigo = codigo;
-            this.ImagemBase64 = imagemBase64;
-            this.CodigoArtista = codigoArtista;
-            this.CodigoAnime = codigoAnime;
+            this.codigo = codigo;
+            this.imagemBase64 = imagemBase64;
+            this.codigoArtista = codigoArtista;
+            this.codigoAnime = codigoAnime;
         }
-        public int Codigo
+        public int codigo
         {
-            get { return codigo; }
-            set { codigo = value; }
+            get { return _codigo; }
+            set { _codigo = value; }
         }
-        public string ImagemBase64
+        public string imagemBase64
         {
-            get { return imagemBase64; }
-            set { imagemBase64 = value; }
+            get { return _imagemBase64; }
+            set { _imagemBase64 = value; }
         }
-        public int CodigoArtista
+        public int codigoArtista
         {
-            get { return codigoArtista; }
-            set { codigoArtista = value; }
+            get { return _codigoArtista; }
+            set { _codigoArtista = value; }
         }
-        public int CodigoAnime
+        public int codigoAnime
         {
-            get { return codigoAnime; }
-            set { codigoAnime = value; }
+            get { return _codigoAnime; }
+            set { _codigoAnime = value; }
         }
     }
 }

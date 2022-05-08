@@ -5,10 +5,12 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 
 namespace N1B2_API.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Route("api/arte")]
     public class ArteController : Controller
     {
@@ -21,7 +23,7 @@ namespace N1B2_API.Controllers
             string erro = ValidaDados(arte);
             if(string.IsNullOrEmpty(erro))
                 return erro;
-            arte.Codigo = listaArte.Count + 1;
+            arte.codigo = listaArte.Count + 1;
             listaArte.Add(arte);
             return "Arte salva com sucesso!";
         }
@@ -33,10 +35,10 @@ namespace N1B2_API.Controllers
             string erro = ValidaDados(arte);
             if (string.IsNullOrEmpty(erro))
                 return erro;
-            var arteAlterar = listaArte.Where(a => a.Codigo == arte.Codigo).Select(e => {
-                e.CodigoAnime = arte.Codigo;
-                e.CodigoArtista = arte.CodigoArtista;
-                e.ImagemBase64 = arte.ImagemBase64;
+            var arteAlterar = listaArte.Where(a => a.codigo == arte.codigo).Select(e => {
+                e.codigoAnime = arte.codigo;
+                e.codigoArtista = arte.codigoArtista;
+                e.imagemBase64 = arte.imagemBase64;
                 return e;
             }).ToList();
             return "Sucesso na alteração";
@@ -46,7 +48,7 @@ namespace N1B2_API.Controllers
         [Route("DeleteArte")]
         public string DeletaArte(ArteModel arte)
         {
-            if (!VerificaExistenciaArte(arte.Codigo))
+            if (!VerificaExistenciaArte(arte.codigo))
                 return "Código não existe!";
             listaArte.Remove(arte);
             return "Arte removida com sucesso!";
@@ -54,7 +56,7 @@ namespace N1B2_API.Controllers
 
         private string ValidaDados(ArteModel arte)
         {
-            if (!ValidaImagem(arte.ImagemBase64))
+            if (!ValidaImagem(arte.imagemBase64))
                 return "Não foi possível salvar a imagem, valor inválido de imagem!";
             if (!ValidaCodigoArtista(arte))
                 return "Código do artista inválido!";
@@ -65,13 +67,13 @@ namespace N1B2_API.Controllers
 
         private bool ValidaCodigoArtista(ArteModel arte)
         {
-            if (arte.CodigoArtista <= 0)
+            if (arte.codigoArtista <= 0)
                 return false;
             return true;
         }
         private bool ValidaCodigoAnime(ArteModel arte)
         {
-            if (arte.CodigoAnime <= 0)
+            if (arte.codigoAnime <= 0)
                 return false;
             return true;
         }
@@ -85,7 +87,7 @@ namespace N1B2_API.Controllers
 
         private bool VerificaExistenciaArte(int codigo)
         {
-            int codigoLista = listaArte.Where(a => a.Codigo == codigo).Select(e => e.Codigo).Count();
+            int codigoLista = listaArte.Where(a => a.codigo == codigo).Select(e => e.codigo).Count();
             if (codigoLista == 0)
                 return true;
             return false;

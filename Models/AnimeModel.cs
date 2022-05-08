@@ -7,8 +7,8 @@ namespace N1B2_API.Models
 {
     public class AnimeModel
     {
-        private int codigo;
-        private string nomeAnime;
+        private int _codigo;
+        private string _nome_Anime;
 
         public AnimeModel()
         {
@@ -18,17 +18,17 @@ namespace N1B2_API.Models
         public AnimeModel(int codigo, string nomeAnime)
         {
             this.Codigo = codigo;
-            this.NomeAnime = nomeAnime;
+            this.nomeAnime = nomeAnime;
         }
         public int Codigo
         {
-            get { return codigo; }
-            set { codigo = value; }
+            get { return _codigo; }
+            set { _codigo = value; }
         }
-        public string NomeAnime
+        public string nomeAnime
         {
-            get { return nomeAnime; }
-            set { nomeAnime = value; }
+            get { return _nome_Anime; }
+            set { _nome_Anime = value; }
         }
     }
 }

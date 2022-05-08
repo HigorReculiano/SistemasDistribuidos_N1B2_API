@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace N1B2_API
 {
@@ -9,6 +10,7 @@ namespace N1B2_API
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
             // Configuração e serviços de API Web
 
             // Rotas de API Web

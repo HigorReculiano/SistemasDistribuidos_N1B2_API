@@ -5,9 +5,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace N1B2_API.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/artista")]
     public class ArtistaController : ApiController
     {
@@ -20,7 +22,7 @@ namespace N1B2_API.Controllers
             string erro = ValidaDado(artista);
             if (!string.IsNullOrEmpty(erro))
                 return erro;
-            artista.Codigo = listaArtistas.Count + 1;
+            artista.codigo = listaArtistas.Count + 1;
             listaArtistas.Add(artista);
             return "Usuário cadastrado com sucesso!";
         }
@@ -33,13 +35,13 @@ namespace N1B2_API.Controllers
             if (!string.IsNullOrEmpty(erro))
                 return erro;
 
-            listaArtistas.Where(n => n.Codigo ==
-            artista.Codigo)
+            listaArtistas.Where(n => n.codigo ==
+            artista.codigo)
             .Select(s =>
             {
-                s.Codigo = artista.Codigo;
-                s.Email = artista.Email;
-                s.NomeArtista = artista.NomeArtista;
+                s.codigo = artista.codigo;
+                s.email = artista.email;
+                s.nomeArtista = artista.nomeArtista;
                 return s;
             }).ToList();
             return "Usuário alterado com sucesso!";
@@ -49,7 +51,7 @@ namespace N1B2_API.Controllers
         [Route("ExcluirUsuario/{codigo}")]
         public string ExcluirUsuario(int codigo)
         {
-            ArtistaModel artista = listaArtistas.Where(n => n.Codigo == codigo)
+            ArtistaModel artista = listaArtistas.Where(n => n.codigo == codigo)
             .Select(n => n)
             .First();
             if (artista == null)
@@ -63,7 +65,7 @@ namespace N1B2_API.Controllers
         [Route("ConsultarArtistaPorCodigo/{codigo}")]
         public ArtistaModel ConsultarUsuarioPorCodigo(int codigo)
         {
-            ArtistaModel artista = listaArtistas.Where(n => n.Codigo == codigo)
+            ArtistaModel artista = listaArtistas.Where(n => n.codigo == codigo)
             .Select(n => n)
             .FirstOrDefault();
             return artista;
@@ -78,11 +80,11 @@ namespace N1B2_API.Controllers
         
         private string ValidaDado(ArtistaModel artista)
         {
-            if (!ValidaNome(artista.NomeArtista))
+            if (!ValidaNome(artista.nomeArtista))
                 return "Nome de usuário inválido, não pode texto vazio!";
-            if (!IsValidEmail(artista.Email))
+            if (!IsValidEmail(artista.email))
                 return "Email inválido";
-            if (EmailExiste(artista.Email))
+            if (EmailExiste(artista.email))
                 return "Email já existe!";
             return string.Empty;
         }
@@ -96,7 +98,7 @@ namespace N1B2_API.Controllers
 
         private bool EmailExiste(string email)
         {
-            var emailExistente = listaArtistas.Where(a => a.Email.ToUpper() == email.ToUpper()).Select(n => n.Email).Count();
+            var emailExistente = listaArtistas.Where(a => a.email.ToUpper() == email.ToUpper()).Select(n => n.email).Count();
             if (emailExistente == 0)
                 return false;
             return true;

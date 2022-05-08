@@ -7,9 +7,9 @@ namespace N1B2_API.Models
 {
     public class ArtistaModel
     {
-        private int codigo;
-        private string nomeArtista;
-        private string email;
+        private int _codigo;
+        private string _nomeArtista;
+        private string _email;
 
         public ArtistaModel()
         {
@@ -18,24 +18,24 @@ namespace N1B2_API.Models
 
         public ArtistaModel(int codigo, string nomeArtista, string email)
         {
-            this.Codigo = codigo;
-            this.NomeArtista = nomeArtista;
-            this.Email = email;
+            this.codigo = codigo;
+            this.nomeArtista = nomeArtista;
+            this.email = email;
         }
-        public int Codigo
+        public int codigo
         {
-            get { return codigo; }
-            set { codigo = value; }
+            get { return _codigo; }
+            set { _codigo = value; }
         }
-        public string NomeArtista
+        public string nomeArtista
         {
-            get { return nomeArtista; }
-            set { nomeArtista = value; }
+            get { return _nomeArtista; }
+            set { _nomeArtista = value; }
         }
-        public string Email
+        public string email
         {
-            get { return email; }
-            set { email = value; }
+            get { return _email; }
+            set { _email = value; }
         }
     }
 }
